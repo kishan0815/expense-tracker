@@ -29,9 +29,9 @@ public class Group {
 	@NotBlank
 	private String groupName;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
-	@JoinTable(name = "group_user", joinColumns = { @JoinColumn(name = "group_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "user_id") })
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
+	@JoinTable(name = "group_user", joinColumns = { @JoinColumn(name = "group_id", referencedColumnName = "id") }, inverseJoinColumns = {
+			@JoinColumn(name = "user_id", referencedColumnName = "id") })
 	private Set<User> users = new HashSet<>();
 
 	public Group() {
@@ -61,14 +61,6 @@ public class Group {
 
 	public Set<User> getUsers() {
 		return users;
-	}
-
-	public void addUser(User user) {
-		if (users.contains(user)) {
-			return;
-		}
-		users.add(user);
-		user.checkGroup(this);
 	}
 
 	@Override

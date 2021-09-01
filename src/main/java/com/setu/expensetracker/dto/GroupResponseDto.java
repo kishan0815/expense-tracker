@@ -6,13 +6,21 @@ public class GroupResponseDto {
 
 	Integer groupId;
 	String name;
-	List<UserResponseDto> users;
+	List<Integer> users;
 
-	public GroupResponseDto(Integer groupId, String name, List<UserResponseDto> users) {
+	public GroupResponseDto(Integer groupId, String name, List<Integer> users) {
 		super();
 		this.groupId = groupId;
 		this.name = name;
 		this.users = users;
+	}
+
+	public Integer getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(Integer groupId) {
+		this.groupId = groupId;
 	}
 
 	public String getName() {
@@ -23,11 +31,11 @@ public class GroupResponseDto {
 		this.name = name;
 	}
 
-	public List<UserResponseDto> getUsers() {
+	public List<Integer> getUsers() {
 		return users;
 	}
 
-	public void setUsers(List<UserResponseDto> users) {
+	public void setUsers(List<Integer> users) {
 		this.users = users;
 	}
 

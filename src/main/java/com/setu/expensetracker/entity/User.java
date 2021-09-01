@@ -3,10 +3,8 @@ package com.setu.expensetracker.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +34,7 @@ public class User {
 	@NotNull
 	private Integer age;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, mappedBy = "users")
+	@ManyToMany(mappedBy = "users")
 	private Set<Group> groups = new HashSet<>();
 
 	public User() {
@@ -94,13 +92,15 @@ public class User {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-
-	public void checkGroup(Group group) {
-		if (groups.contains(group))
-			return;
-		groups.add(group);
-	}
 	
+	public Set<Group> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Set<Group> groups) {
+		this.groups = groups;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

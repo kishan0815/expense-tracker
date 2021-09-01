@@ -7,5 +7,4 @@ import com.setu.expensetracker.entity.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
-
 }
